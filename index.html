@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WithAI</title>
+    <meta name="description" content="WithAI Research - Building cutting edge, safe AI systems for business.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #1a1a2e;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 24px;
+        }
+
+        .container {
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .logo {
+            margin-bottom: 48px;
+        }
+
+        .logo svg {
+            width: 64px;
+            height: 64px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #444;
+            margin-bottom: 48px;
+        }
+
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #888;
+            margin-bottom: 16px;
+        }
+
+        .team-member {
+            margin-bottom: 8px;
+        }
+
+        .team-name {
+            font-weight: 600;
+        }
+
+        .team-detail {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .waitlist-section {
+            background: #f8f8f8;
+            padding: 32px;
+            border-radius: 4px;
+            margin-bottom: 48px;
+        }
+
+        .waitlist-section p {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        input[type="email"] {
+            flex: 1;
+            padding: 12px 16px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        input[type="email"]:focus {
+            border-color: #1a1a2e;
+        }
+
+        input[type="email"]::placeholder {
+            color: #999;
+        }
+
+        .submit-button {
+            padding: 12px 24px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 16px;
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #2a2a4e;
+        }
+
+        .submit-button:disabled {
+            background: #888;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            color: #2e7d32;
+            display: none;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 48px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg width="64" height="64" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                <rect width="128" height="128" rx="16" fill="#1a1a2e"/>
+                <text x="64" y="78" font-family="Georgia, Times New Roman, serif" font-size="48" font-weight="400" text-anchor="middle" fill="#ffffff">wAi</text>
+            </svg>
+        </div>
+
+        <h1>WithAI</h1>
+
+        <p class="tagline">
+            We are researching how to build cutting edge, safe AI systems for business.
+        </p>
+
+        <div class="section">
+            <div class="section-title">Team</div>
+            <div class="team-member">
+                <span class="team-name">Benjamin Tsengel Finch</span>
+                <span class="team-detail"> - Chief of Staff @ Sentient, Princeton ECE</span>
+            </div>
+            <div class="team-member">
+                <span class="team-name">Jailany Thaw</span>
+                <span class="team-detail"> - Founder of Upskill, Princeton COS</span>
+            </div>
+            <div class="team-member">
+                <span class="team-name">Edison Zhu</span>
+                <span class="team-detail"> - Princeton ORFE</span>
+            </div>
+        </div>
+
+        <div class="waitlist-section">
+            <p>Join our waitlist to learn more:</p>
+            <form id="waitlist-form">
+                <div class="form-row">
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+                    <button type="submit" class="submit-button">Join</button>
+                </div>
+            </form>
+            <p class="success-message" id="success-message">Thanks for joining the waitlist.</p>
+        </div>
+
+        <div class="footer">
+            WithAI Research, Inc.
+        </div>
+    </div>
+
+    <script>
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSerb1v8WWQRX2NHsZckKgYyHgokB0dmXgEqFCpxJkxdOR0dBQ/formResponse';
+        const EMAIL_ENTRY_ID = 'entry.250440356';
+
+        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const submitButton = this.querySelector('.submit-button');
+            const successMessage = document.getElementById('success-message');
+            const email = emailInput.value.trim();
+
+            if (!email) return;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Joining...';
+
+            try {
+                const formData = new URLSearchParams();
+                formData.append(EMAIL_ENTRY_ID, email);
+
+                await fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: formData.toString()
+                });
+
+                emailInput.style.display = 'none';
+                submitButton.style.display = 'none';
+                successMessage.style.display = 'block';
+            } catch (error) {
+                // Still show success - no-cors mode doesn't give us response info
+                emailInput.style.display = 'none';
+                submitButton.style.display = 'none';
+                successMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
