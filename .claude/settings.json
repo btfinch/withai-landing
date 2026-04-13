@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(source venv/bin/activate)",
+      "Bash(pip install:*)",
+      "Bash(source ../venv/bin/activate)",
+      "Bash(pio device:*)",
+      "Bash(pio run:*)",
+      "Bash(~/.platformio/penv/bin/pip install:*)"
+    ]
+  }
+}
