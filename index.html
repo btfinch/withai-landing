@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WithAI Research</title>
-    <meta name="description" content="WithAI Research - Exploring the augmented future of human work. Currently building an AI-native workspace to empower investors and transform firms.">
+    <meta name="description" content="WithAI Research - Exploring the augmented future of human work. Currently building and deploying the custom AI-native workspace for fundamental equity investors.">
     <meta property="og:title" content="WithAI Research">
-    <meta property="og:description" content="Exploring the augmented future of human work. Currently building an AI-native workspace to empower investors and transform firms.">
+    <meta property="og:description" content="Exploring the augmented future of human work. Currently building and deploying the custom AI-native workspace for fundamental equity investors.">
     <meta property="og:image" content="https://withai.nyc/og-image.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://withai.nyc/og-image.png">
     <meta name="twitter:title" content="WithAI Research">
-    <meta name="twitter:description" content="Exploring the augmented future of human work. Currently building an AI-native workspace to empower investors and transform firms.">
+    <meta name="twitter:description" content="Exploring the augmented future of human work. Currently building and deploying the custom AI-native workspace for fundamental equity investors.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,11 +53,37 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 16px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
         }
 
         h1 {
             font-size: 28px;
             font-weight: 500;
+        }
+
+        .demo-button {
+            padding: 10px 20px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 17px;
+            background: #000;
+            color: #fff;
+            border: 1px solid #000;
+            border-radius: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .demo-button:hover {
+            background: #333;
+            border-color: #333;
         }
 
         .yc-badge {
@@ -185,6 +211,30 @@
             color: #000;
         }
 
+        .backers-section {
+            margin-bottom: 28px;
+            padding-top: 28px;
+            border-top: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .backers-text {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .yc-logo {
+            height: 14px;
+            width: 14px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
         @media (max-width: 480px) {
             body {
                 padding: 40px 16px 32px;
@@ -204,7 +254,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>WithAI Research</h1>
+            <div class="header-title">
+                <h1>WithAI Research</h1>
+            </div>
+            <a href="https://cal.com/imj-mcinnis/video-call" class="demo-button">Book a demo</a>
             <div class="yc-badge" style="display: none;">
                 <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M47.9985 47.9994H0V0H47.9985V47.9994Z" fill="#999"/>
@@ -222,26 +275,17 @@
             <div class="section-title">Team:</div>
             <div class="team-member">Ben Finch - Founding Researcher @ Sentient, Princeton ECE</div>
             <div class="team-member">Ian McInnis - Investor @ Bridgewater, Princeton Math</div>
-            <div class="team-member">Jailany Thiaw - Founder @ Upskill, Princeton MAE</div>
             <div class="team-member">Edison Zhu - Princeton ORFE</div>
             <div class="team-member">Skyler Chan - Princeton ORFE</div>
         </div>
 
-        <div class="waitlist-section">
-            <p>Receive our newsletter:</p>
-            <form id="waitlist-form">
-                <div class="form-row">
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="email"
-                        required
-                    >
-                    <button type="submit" class="submit-button">Join</button>
-                </div>
-            </form>
-            <p class="success-message" id="success-message">Thanks for joining.</p>
+
+        <div class="backers-section">
+            <div class="backers-text">
+                <span>Backed by</span>
+                <img src="yc-logo.png" alt="Y Combinator" class="yc-logo" />
+                <span>Combinator and by Greg Jensen and Karen Karniol-Tambour, co-CIOs of Bridgewater</span>
+            </div>
         </div>
 
         <div class="footer">
@@ -261,45 +305,5 @@
         </div>
     </div>
 
-    <script>
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSerb1v8WWQRX2NHsZckKgYyHgokB0dmXgEqFCpxJkxdOR0dBQ/formResponse';
-        const EMAIL_ENTRY_ID = 'entry.250440356';
-
-        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const emailInput = document.getElementById('email');
-            const submitButton = this.querySelector('.submit-button');
-            const successMessage = document.getElementById('success-message');
-            const email = emailInput.value.trim();
-
-            if (!email) return;
-
-            submitButton.disabled = true;
-            submitButton.textContent = '...';
-
-            try {
-                const formData = new URLSearchParams();
-                formData.append(EMAIL_ENTRY_ID, email);
-
-                await fetch(GOOGLE_FORM_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formData.toString()
-                });
-
-                emailInput.style.display = 'none';
-                submitButton.style.display = 'none';
-                successMessage.style.display = 'block';
-            } catch (error) {
-                emailInput.style.display = 'none';
-                submitButton.style.display = 'none';
-                successMessage.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
